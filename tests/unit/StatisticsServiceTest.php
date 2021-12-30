@@ -10,12 +10,7 @@ use Statistics\Service\StatisticsService;
 use Statistics\Calculator\Factory\StatisticsCalculatorFactory;
 use Statistics\Builder\ParamsBuilder;
 use SocialPost\Dto\SocialPostTo;
-use SocialPost\Service\SocialPostService;
 use Traversable;
-
-use SocialPost\Driver\SocialDriverInterface;
-use SocialPost\Dto\FetchParamsTo;
-use SocialPost\Hydrator\SocialPostHydratorInterface;
 use \ArrayIterator;
 
 
@@ -38,7 +33,7 @@ class StatisticsServiceTest extends TestCase
 
         $date  = DateTime::createFromFormat('F, Y', 'August, 2018');
         $params = ParamsBuilder::reportStatsParams($date);
-        $statsService = new \Statistics\Service\StatisticsService(new StatisticsCalculatorFactory());
+        $statsService = new StatisticsService(new StatisticsCalculatorFactory());
         $stats = $statsService->calculateStats($posts, $params);
 
         $this->assertEquals(4, $stats->getChildren()[2]->value, 'Total posts per week');
