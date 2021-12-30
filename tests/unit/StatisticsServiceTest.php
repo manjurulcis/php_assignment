@@ -36,8 +36,9 @@ class StatisticsServiceTest extends TestCase
         $statsService = new StatisticsService(new StatisticsCalculatorFactory());
         $stats = $statsService->calculateStats($posts, $params);
 
-        $this->assertEquals(4, $stats->getChildren()[2]->value, 'Total posts per week');
-        $this->assertEquals(1, $stats->getChildren()[3]->value, 'Average posts per month per user');
+        $childrens = $stats->getChildren();
+        $this->assertEquals(4, $childrens[2]->getChildren()[0]->getValue(), 'Total posts per week');
+        $this->assertEquals(1, $childrens[3]->getValue(), 'Total Average posts per month per user');
     }
 
     /**
