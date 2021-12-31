@@ -37,7 +37,7 @@ class StatisticsServiceTest extends TestCase
         $stats = $statsService->calculateStats($posts, $params);
 
         $childrens = $stats->getChildren();
-        $this->assertEquals(4, $childrens[2]->getChildren()[0]->getValue(), 'Total posts per week');
+        $this->assertEquals(4, $childrens[2]->getChildren()[0]->getValue(), 'Average Total posts per week');
         $this->assertEquals(1, $childrens[3]->getValue(), 'Total Average posts per month per user');
     }
 
@@ -53,7 +53,7 @@ class StatisticsServiceTest extends TestCase
             $traversable_posts[] = $this->hydrate($postData);
         } 
 
-        $posts =  new ArrayIterator($traversable_posts, 0);
+        $posts = new ArrayIterator($traversable_posts, 0);
 
         return $posts;
     }
